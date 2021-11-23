@@ -116,7 +116,7 @@ def load_data(args, dataset_name):
 
         train_data_num, test_data_num, train_data_global, test_data_global, \
         train_data_local_num_dict, train_data_local_dict, test_data_local_dict, \
-        class_num = data_loader(args.dataset, args.data_dir, args.partition_method,
+        class_num = data_loader(args.dataset_name, args.main_data_dir, args.partition_method,
                                 args.partition_alpha, args.client_num_in_total, args.batch_size)
 
     dataset = [train_data_num, test_data_num, train_data_global, test_data_global,
@@ -127,10 +127,10 @@ def load_data(args, dataset_name):
 def create_model(args, model_name, output_dim):
     logging.info("create_model. model_name = %s, output_dim = %s" % (model_name, output_dim))
     model = None
-    if model_name == "lr" and args.dataset == "mnist":
+    if model_name == "lr" and args.dataset_name == "mnist":
         model = LogisticRegression(28 * 28, output_dim)
         args.client_optimizer = "sgd"
-    elif model_name == "rnn" and args.dataset == "shakespeare":
+    elif model_name == "rnn" and args.dataset_name == "shakespeare":
         model = RNN_OriginalFedAvg(28 * 28, output_dim)
         args.client_optimizer = "sgd"
     elif model_name == "resnet56":
