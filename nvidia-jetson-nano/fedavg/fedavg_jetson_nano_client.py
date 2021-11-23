@@ -115,7 +115,7 @@ def create_model(args: TrainingTaskArgs, output_dim: int):
 def main(server_ip, client_uuid):
     client_id, args = register(server_ip, client_uuid)
 
-    logging.debug(f'args = {args}')
+    logging.debug(f"args = {args}")
     logging.info(f"client_id = {client_id}")
     logging.info(f"dataset = {args.dataset_name}")
     logging.info(f"model = {args.model}")
