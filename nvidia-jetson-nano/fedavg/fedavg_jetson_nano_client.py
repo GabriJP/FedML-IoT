@@ -8,14 +8,15 @@ import requests
 import torch
 from attr import attrs, fields_dict
 
-from FedML.fedml_api.data_preprocessing import *
+from FedML.fedml_api.data_preprocessing import LocalDataset, MNISTDataLoader, ShakespeareDataLoader, \
+    Cifar100DatasetLoader, Cinic10DatasetLoader, Cifar10DatasetLoader
 from FedML.fedml_api.distributed.fedavg.FedAVGTrainer import FedAVGTrainer
 from FedML.fedml_api.distributed.fedavg.FedAvgClientManager import FedAVGClientManager
 from FedML.fedml_api.distributed.fedavg.MyModelTrainer import MyModelTrainer
+from FedML.fedml_api.model import RNNOriginalFedAvg
 from FedML.fedml_api.model.cv.mobilenet import mobilenet
 from FedML.fedml_api.model.cv.resnet import resnet56
 from FedML.fedml_api.model.linear.lr import LogisticRegression
-from fedml_api.model import RNNOriginalFedAvg
 
 
 @attrs(auto_attribs=True, cmp=False)
