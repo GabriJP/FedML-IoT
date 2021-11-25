@@ -128,7 +128,7 @@ def main(server_ip, client_uuid, gpu_num_per_machine):
     np.random.seed(0)
     torch.manual_seed(10)
 
-    device = init_training_device(client_id - 1, args.client_num_per_round - 1, gpu_num_per_machine)
+    device = init_training_device(client_id, args.client_num_per_round, gpu_num_per_machine)
 
     # load data
     dataset = load_data(args)
