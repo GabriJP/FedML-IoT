@@ -112,7 +112,7 @@ def create_model(args: TrainingTaskArgs, output_dim: int):
 @click.command()
 @click.option('--server_ip', type=str, default='http://127.0.0.1:5000', help='URL address of the FedML server')
 @click.option('--client_uuid', type=int, default=0, help='Client identifier number')
-@click.option('--gpu_num_per_machine', type=int, default=0, help='Cuda device identifier')
+@click.option('--gpu_num_per_machine', type=int, default=1, help='Number of GPUs per machine')
 def main(server_ip, client_uuid, gpu_num_per_machine):
     client_id, args = register(server_ip, client_uuid)
 
