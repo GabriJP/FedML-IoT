@@ -61,7 +61,7 @@ def init_training_device(process_id, fl_worker_num, gpu_num_per_machine):
     process_gpu_dict = {client_idx: client_idx % gpu_num_per_machine for client_idx in range(1, fl_worker_num + 1)}
 
     logging.info(process_gpu_dict)
-    device = torch.device(f"cuda:{process_gpu_dict[process_id - 1]}" if torch.cuda.is_available() else "cpu")
+    device = torch.device(f"cuda:{process_gpu_dict[process_id]}" if torch.cuda.is_available() else "cpu")
     logging.info(device)
     return device
 
