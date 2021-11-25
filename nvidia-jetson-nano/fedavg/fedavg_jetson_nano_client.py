@@ -112,7 +112,8 @@ def create_model(args: TrainingTaskArgs, output_dim: int):
 @click.command()
 @click.option('--server_ip', type=str, default='http://127.0.0.1:5000', help='URL address of the FedML server')
 @click.option('--client_uuid', type=int, default=0, help='Client identifier number')
-def main(server_ip, client_uuid):
+@click.option('--gpu_num_per_machine', type=int, default=0, help='Cuda device identifier')
+def main(server_ip, client_uuid, gpu_num_per_machine):
     client_id, args = register(server_ip, client_uuid)
 
     logging.debug(f"args = {args}")
@@ -127,7 +128,7 @@ def main(server_ip, client_uuid):
     np.random.seed(0)
     torch.manual_seed(10)
 
-    device = init_training_device(client_id - 1, args.client_num_per_round - 1, 4)
+    device = init_training_device(client_id - 1, args.client_num_per_round - 1, gpu_num_per_machine)
 
     # load data
     dataset = load_data(args)
