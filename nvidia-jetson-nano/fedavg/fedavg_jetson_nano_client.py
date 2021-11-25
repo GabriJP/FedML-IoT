@@ -1,6 +1,6 @@
 import logging
 import time
-from typing import Tuple
+from typing import Tuple, Optional
 
 import click
 import numpy as np
@@ -35,6 +35,9 @@ class TrainingTaskArgs:
     batch_size: int
     frequency_of_the_test: int
     is_mobile: bool
+    communication_method: str
+    communication_host: Optional[str] = None
+    communication_port: Optional[int] = None
 
     @classmethod
     def from_dict(cls, d):
@@ -144,7 +147,7 @@ def main(server_ip, client_uuid, gpu_num_per_machine):
     trainer = FedAVGTrainer(client_id, dataset, device, args, model_trainer)
 
     size = args.client_num_per_round + 1
-    client_manager = FedAVGClientManager(args, trainer, rank=client_id, size=size, backend="MQTT")
+    client_manager = FedAVGClientManager(args, trainer, rank=client_id, size=size)
     client_manager.run()
     client_manager.start_training()
 
