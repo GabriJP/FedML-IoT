@@ -151,7 +151,7 @@ def main(server_ip, client_uuid, gpu_num_per_machine):
     client_manager.run()
     client_manager.start_training()
 
-    seconds = 5
+    seconds = 1_000
     logging.info(f'Sleeping for {seconds} seconds')
     time.sleep(seconds)
 
